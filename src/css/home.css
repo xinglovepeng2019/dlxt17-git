@@ -1,0 +1,91 @@
+.home-wrapper {
+  padding-bottom: 50px;
+}
+.home-wrapper .header {
+  position: relative;
+}
+.home-wrapper .header .van-swipe {
+  width: 100%;
+  height: 375px;
+}
+.home-wrapper .header .van-swipe .van-swipe-item {
+  height: 100%;
+}
+.home-wrapper .header .van-swipe .van-swipe-item img {
+  width: 100%;
+  height: 100%;
+}
+.home-wrapper .header .list {
+  position: absolute;
+  bottom: 0;
+  z-index: 999;
+  width: 100%;
+  height: 44px;
+  background-color: #fff;
+  display: flex;
+  border-radius: 25% 25% 0 0;
+}
+.home-wrapper .header .list li {
+  flex: 1;
+  text-align: center;
+  line-height: 44px;
+}
+.home-wrapper .concentration-title .header-title {
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.home-wrapper .concentration-title .header-title span:first-child {
+  margin-right: 15px;
+}
+.home-wrapper .concentration-title .header-title .van-icon {
+  margin-top: 2px;
+}
+.home-wrapper .concentration-title .list-wrapper {
+  overflow-x: scroll;
+}
+.home-wrapper .concentration-title .list-wrapper .ellipsis {
+  overflow: hidden;
+  /*超出的部分隐藏*/
+  text-overflow: ellipsis;
+  /*超出的部分显示省略号*/
+  white-space: nowrap;
+  /*只显示一行加上省略号*/
+}
+.home-wrapper .concentration-title .list-wrapper .list {
+  display: flex;
+}
+.home-wrapper .concentration-title .list-wrapper .list li {
+  padding-bottom: 16px;
+  margin-left: 6px;
+  box-sizing: border-box;
+}
+.home-wrapper .concentration-title .list-wrapper .list li img {
+  width: 300px;
+  height: 192px;
+  border-radius: 5px;
+}
+.home-wrapper .concentration-title .list-wrapper .list li .title {
+  width: 200px;
+  font-size: 18px;
+  color: #2c2c2c;
+}
+.home-wrapper .concentration-title .list-wrapper .list li .description {
+  margin-top: 10px;
+  width: 162px;
+  font-size: 14px;
+  color: #a8a8a8;
+}
+.home-wrapper .tuijian .header-title {
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.home-wrapper .tuijian .header-title span:first-child {
+  margin-right: 15px;
+}
+.home-wrapper .tuijian .header-title .van-icon {
+  margin-top: 2px;
+}
