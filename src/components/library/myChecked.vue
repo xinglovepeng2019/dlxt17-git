@@ -31,9 +31,10 @@ export default {
     const checked = useVModel(props, 'modelValue', emit)
 
     const changeChecked = () => {
-      const newVal = checked.value
-      // 通知父组件
-      checked.value = !newVal
+      // checked.value  读取props的值
+      const newVal = !checked.value
+      // 通知父组件  emit('update:modelValue'e:modelValue')
+      checked.value = newVal
       // 让组件支持change事件
       emit('change', newVal)
     }
@@ -54,12 +55,12 @@ export default {
     height: 20px;
     margin-right: 2px;
     &.checked {
-      border: 1px solid #ddd;
-      border-radius: 50%;
-    }
-    &.unchecked {
       background: url('@/assets/img/check.png') no-repeat;
       border: 1px solid #fff;
+    }
+    &.unchecked {
+      border: 1px solid #ddd;
+      border-radius: 50%;
     }
   }
   span {

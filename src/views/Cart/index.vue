@@ -14,9 +14,10 @@
           <van-swipe-cell v-for="item in $store.getters.carts" :key="item.id">
             <li>
               <div class="cart-left">
+                <!-- <my-checked v-model="item.checked"></my-checked> -->
                 <my-checked
                   :modelValue="item.checked"
-                  @change="$store.commit('cart/changeState', item.id)"
+                  @change="($event) => checkOne(item.id, $event)"
                 ></my-checked>
                 <!-- <van-checkbox
                   checked-color="#c00"
@@ -63,10 +64,7 @@
     </div>
     <!-- 购物车底部footer -->
     <div class="cart-footer">
-      <my-checked
-        @change="checkedAll"
-        :modelValue="$store.getters['cart/isCheckAll']"
-      ></my-checked>
+      <my-checked v-model="checkAll"></my-checked>
       <!-- <van-checkbox checked-color="#c00" v-model="checkAll">全选</van-checkbox> -->
       <div class="footer-right">
         <div class="total-price">
@@ -88,8 +86,10 @@ import { useStore } from 'vuex'
 import { Dialog, Notify, Toast } from 'vant'
 import { useLikeGoods } from './js/like-goods'
 import { useRouter } from 'vue-router'
+import myChecked from '@/components/library/myChecked.vue'
 
 export default {
+  components: { myChecked },
   setup() {
     const router = useRouter()
     const store = useStore()
@@ -99,28 +99,24 @@ export default {
     let isShow = ref(false)
     let acheck = ref(false)
 
-    // const checkAll = computed({
-    //   get() {
-    //     // 判断购物车中是否有商品
-    //     if (store.state.cart.cartList.length) {
-    //       // 判断购物车中所有商品是否全部被选中 只有有一个不选中 全选按钮就不选中
-    //       var s = store.state.cart.cartList.every(
-    //         (item) => item.checked === true
-    //       )
-    //       return s
-    //     } else {
-    //       return false
-    //     }
-    //   },
-    //   set(val) {
-    //     // 让所有购物车商品的状态和全选的状态一致
-    //     store.commit('cart/chooseAll', val)
-    //   },
-    // })
-    const checkedAll = (selected) => {
-      console.log(selected)
-      store.commit('cart/chooseAll', selected)
-    }
+    const checkAll = computed({
+      get() {
+        // 判断购物车中是否有商品
+        if (store.state.cart.cartList.length) {
+          // 判断购物车中所有商品是否全部被选中 只有有一个不选中 全选按钮就不选中
+          var s = store.state.cart.cartList.every(
+            (item) => item.checked === true
+          )
+          return s
+        } else {
+          return false
+        }
+      },
+      set(val) {
+        // 让所有购物车商品的状态和全选的状态一致
+        store.commit('cart/chooseAll', val)
+      },
+    })
 
     // 点击删除按钮  批量删除
     const delChecked = async () => {
@@ -175,8 +171,22 @@ export default {
         router.push('/login')
       }
     }
+    // 单选
+    const checkOne = (id, selected) => {
+      // 调用mutaitions的方法 修改当前点击的数据的状态
+      store.commit('cart/changeState', { id, selected })
+    }
 
-    return { checkedAll, acheck, isShow, delChecked, likeList, del, order }
+    return {
+      checkAll,
+      acheck,
+      isShow,
+      delChecked,
+      likeList,
+      del,
+      order,
+      checkOne,
+    }
   },
 }
 </script>
